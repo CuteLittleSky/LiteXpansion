@@ -405,7 +405,10 @@ public final class Items {
     public static final SlimefunItemStack METAL_FORGE = new SlimefunItemStack(
         "METAL_FORGE",
         Material.DISPENSER,
-        "&7金属冶炼炉"
+        "&7金属冶炼炉",
+        "",
+        "&7用于冶炼工业金属",
+        "&6每次冶炼时会消耗完全氧化的涂蜡切制铜块"
     );
 
     public static final SlimefunItemStack MANUAL_MILL = new SlimefunItemStack(
