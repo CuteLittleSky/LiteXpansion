@@ -21,6 +21,7 @@ public class MetalForge extends CraftingMultiBlock {
     );
 
     private static final ItemStack anvil = new ItemStack(Material.ANVIL);
+    private static final ItemStack ironBlock = new ItemStack(Material.IRON_BLOCK);
     private static final ItemStack diamondBlock = new ItemStack(Material.DIAMOND_BLOCK);
 
     public MetalForge() {
