@@ -119,7 +119,7 @@ final class ItemSetup {
         // Machine block
         registerItem(Items.MACHINE_BLOCK, MetalForge.RECIPE_TYPE,
             Items.REFINED_IRON, Items.REFINED_IRON, Items.REFINED_IRON,
-            Items.REFINED_IRON, null, Items.REFINED_IRON,
+            Items.REFINED_IRON, Items.ELECTRONIC_CIRCUIT, Items.REFINED_IRON,
             Items.REFINED_IRON, Items.REFINED_IRON, Items.REFINED_IRON
         );
 
