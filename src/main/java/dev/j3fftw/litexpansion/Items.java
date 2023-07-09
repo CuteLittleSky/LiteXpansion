@@ -28,7 +28,7 @@ public final class Items {
         ),
         new CustomItemStack(PlayerHead.getItemStack(PlayerSkin.fromHashCode(
             "3f87fc5cbb233743a82fb0fa51fe739487f29bcc01c9026621ecefad197f4fb1")),
-            "&7工业(LiteXpansion)"
+            "&7工业"
         )
     );
 
