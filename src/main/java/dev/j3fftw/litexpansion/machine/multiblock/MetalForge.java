@@ -26,7 +26,7 @@ public class MetalForge extends CraftingMultiBlock {
         super(Items.LITEXPANSION, Items.METAL_FORGE, new ItemStack[] {
             anvil, new ItemStack(Material.DIAMOND_BLOCK), anvil,
             ironBlock, new ItemStack(Material.DISPENSER), ironBlock,
-            null, new ItemStack(Material.WAXED_WEATHERED_CUT_COPPER), null
+            null, new ItemStack(Material.WAXED_OXIDIZED_CUT_COPPER), null
         }, new ItemStack[0], BlockFace.DOWN);
     }
 
