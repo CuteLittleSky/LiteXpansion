@@ -16,7 +16,8 @@ public class MetalForge extends CraftingMultiBlock {
         new NamespacedKey(LiteXpansion.getInstance(), "metal_forge"),
         Items.METAL_FORGE,
         "",
-        "&7用于冶炼工业金属"
+        "&7用于冶炼工业金属"，
+        "&6每次冶炼时会消耗完全氧化的涂蜡切制铜块"
     );
 
     private static final ItemStack anvil = new ItemStack(Material.ANVIL);
