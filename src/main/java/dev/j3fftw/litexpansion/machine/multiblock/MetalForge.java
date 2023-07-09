@@ -21,12 +21,12 @@ public class MetalForge extends CraftingMultiBlock {
     );
 
     private static final ItemStack anvil = new ItemStack(Material.ANVIL);
-    private static final ItemStack ironBlock = new ItemStack(Material.IRON_BLOCK);
+    private static final ItemStack diamondBlock = new ItemStack(Material.DIAMOND_BLOCK);
 
     public MetalForge() {
         super(Items.LITEXPANSION, Items.METAL_FORGE, new ItemStack[] {
-            anvil, new ItemStack(Material.DIAMOND_BLOCK), anvil,
-            ironBlock, new ItemStack(Material.DISPENSER), ironBlock,
+            anvil, new ItemStack(Material.STONE_BRICK_WALL), anvil,
+            diamondBlock, new ItemStack(Material.DISPENSER), ironBlock,
             null, new ItemStack(Material.WAXED_OXIDIZED_CUT_COPPER), null
         }, new ItemStack[0], BlockFace.DOWN);
     }
