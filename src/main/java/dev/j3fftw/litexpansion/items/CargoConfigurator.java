@@ -1,5 +1,9 @@
 package dev.j3fftw.litexpansion.items;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
 import dev.j3fftw.litexpansion.Items;
 import dev.j3fftw.litexpansion.LiteXpansion;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -29,8 +33,11 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class CargoConfigurator extends SimpleSlimefunItem<ItemUseHandler> implements Listener {
+
+    private static final Gson GSON = new Gson();
 
     private static final NamespacedKey CARGO_BLOCK = new NamespacedKey(LiteXpansion.getInstance(), "cargo_block");
     private static final NamespacedKey CARGO_CONFIG = new NamespacedKey(LiteXpansion.getInstance(), "cargo_config");
@@ -149,23 +156,31 @@ public class CargoConfigurator extends SimpleSlimefunItem<ItemUseHandler> implem
                 return;
             }
 
-            BlockStorage.setBlockInfo(e.getClickedBlock(), config, true);
-            BlockStorage.getStorage(e.getClickedBlock().getWorld()).reloadInventory(e.getClickedBlock().getLocation());
-            e.getPlayer().sendMessage(ChatColor.GREEN + "已应用配置!");
+            SlimefunBlockData blockData = StorageCacheUtils.getBlock(e.getClickedBlock().getLocation());
+            StorageCacheUtils.executeAfterLoad(blockData, () -> {
+                Map<String, String> map = GSON.fromJson(config, new TypeToken<Map<String, String>>() {}.getType());
+                for (Map.Entry<String, String> entry : map.entrySet()) {
+                    blockData.setData(entry.getKey(), entry.getValue());
+                }
+                e.getPlayer().sendMessage(ChatColor.GREEN + "已应用配置!");
+            }, false);
         } else if (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            PersistentDataAPI.setString(meta, CARGO_BLOCK, blockId);
-            PersistentDataAPI.setString(meta, CARGO_CONFIG, BlockStorage.getBlockInfoAsJson(e.getClickedBlock()));
+            SlimefunBlockData blockData = StorageCacheUtils.getBlock(e.getClickedBlock().getLocation());
+            StorageCacheUtils.executeAfterLoad(blockData, () -> {
+                PersistentDataAPI.setString(meta, CARGO_BLOCK, blockId);
+                PersistentDataAPI.setString(meta, CARGO_CONFIG, GSON.toJson(blockData.getAllData()));
 
-            // Has the copied part
-            if (lore.size() == defaultLore.size() + 2) {
-                lore.clear();
-                lore.addAll(defaultLore);
-            }
-            lore.addAll(Arrays.asList("", ChatColor.GRAY + "> 物品 "
-                + ChatColor.RESET + clickedItemStack.getItemMeta().getDisplayName()
-                + ChatColor.GRAY + " 的配置!"
-            ));
-            e.getPlayer().sendMessage(ChatColor.GREEN + "成功复制节点配置!");
+                // Has the copied part
+                if (lore.size() == defaultLore.size() + 2) {
+                    lore.clear();
+                    lore.addAll(defaultLore);
+                }
+                lore.addAll(Arrays.asList("", ChatColor.GRAY + "> 物品 "
+                    + ChatColor.RESET + clickedItemStack.getItemMeta().getDisplayName()
+                    + ChatColor.GRAY + " 的配置"
+                ));
+                e.getPlayer().sendMessage(ChatColor.GREEN + "成功复制节点配置!");
+            }, false);
         }
     }
 }
