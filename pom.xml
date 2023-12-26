@@ -6,7 +6,7 @@
 
     <groupId>dev.j3fftw</groupId>
     <artifactId>LiteXpansion</artifactId>
-    <version>UNOFFICIAL</version>
+    <version>MODIFIED</version>
 
     <repositories>
         <repository>
@@ -62,7 +62,7 @@
         <dependency>
             <groupId>net.guizhanss</groupId>
             <artifactId>GuizhanLibPlugin</artifactId>
-            <version>1.2.2</version>
+            <version>1.6.1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

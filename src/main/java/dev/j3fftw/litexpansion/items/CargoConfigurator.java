@@ -14,7 +14,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.data.persistent.PersistentDataAPI;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -94,7 +93,7 @@ public class CargoConfigurator extends SimpleSlimefunItem<ItemUseHandler> implem
             return;
         }
 
-        final SlimefunItem block = BlockStorage.check(e.getClickedBlock());
+        final SlimefunItem block = StorageCacheUtils.getSfItem(e.getClickedBlock().getLocation());
         if (block == null) {
             return;
         }
